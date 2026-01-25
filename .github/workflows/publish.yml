@@ -244,6 +244,8 @@ jobs:
     needs: publish
     if: github.event.release.prerelease == false || inputs.prerelease == false
     environment: nuget-org
+    permissions:
+      contents: read
     
     steps:
     - name: Download artifacts
