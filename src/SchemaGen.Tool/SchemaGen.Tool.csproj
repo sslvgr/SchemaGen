@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SchemaGen.Tool</PackageId>
+    <Description>Command-line tool for SchemaGen - generates documentation and diagrams from Entity Framework database schemas.</Description>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>schemagen</ToolCommandName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SchemaGen.Core.Markdown" Version="$(Version)" />
+    <PackageReference Include="SchemaGen.Core.Mermaid" Version="$(Version)" />
+    <PackageReference Include="SchemaGen.Core.SqlDdl" Version="$(Version)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+
+</Project>

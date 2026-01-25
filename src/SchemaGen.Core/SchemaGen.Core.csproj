@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SchemaGen.Core</PackageId>
+    <Description>Meta-package for SchemaGen core functionality including Markdown, Mermaid, and SQL DDL generation capabilities.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SchemaGen.Core.Markdown" Version="$(Version)" />
+    <PackageReference Include="SchemaGen.Core.Mermaid" Version="$(Version)" />
+    <PackageReference Include="SchemaGen.Core.SqlDdl" Version="$(Version)" />
+  </ItemGroup>
+
+</Project>
