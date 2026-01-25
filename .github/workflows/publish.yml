@@ -224,7 +224,7 @@ jobs:
         echo "✅ All symbol packages successfully published to GitHub Packages"
         
     - name: Upload release artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: packages-${{ github.event.release.tag_name || inputs.version }}
         path: ./artifacts/packages/
