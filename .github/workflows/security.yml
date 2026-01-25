@@ -53,7 +53,7 @@ jobs:
         
     - name: Upload vulnerability report
       if: failure()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: vulnerability-report
         path: vulnerability-report.txt
@@ -118,7 +118,7 @@ jobs:
         dotnet-project-licenses --input . --output-format json --output licenses.json
         
     - name: Upload license report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: license-report
         path: licenses.json
@@ -155,7 +155,7 @@ jobs:
           -nsb "https://github.com/Teez-Technologies/SchemaGen"
           
     - name: Upload SBOM
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: sbom
         path: ./artifacts/sbom/
