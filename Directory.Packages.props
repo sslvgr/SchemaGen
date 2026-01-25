@@ -23,7 +23,7 @@
 
   <!-- Build and versioning tools -->
   <ItemGroup Label="Build Tools">
-    <PackageVersion Include="MinVer" Version="5.0.0" />
+    <PackageVersion Include="MinVer" Version="7.0.0" />
     <!-- SourceLink temporarily disabled due to access issues -->
     <!-- <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" /> -->
   </ItemGroup>
