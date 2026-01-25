@@ -7,16 +7,16 @@ This document describes the package metadata configuration for all SchemaGen pac
 All packages include the following metadata configured in `Directory.Build.props`:
 
 ### Basic Information
-- **Authors**: Teez Technologies
-- **Company**: Teez Technologies
+- **Authors**: https://github.com/sslvgr
+- **Company**: sslvgr
 - **Product**: SchemaGen
-- **Copyright**: Copyright © Teez Technologies
+- **Copyright**: Copyright © sslvgr
 - **License**: MIT (PackageLicenseExpression)
 
 ### Repository Information
-- **Repository URL**: https://github.com/Teez-Technologies/SchemaGen
+- **Repository URL**: https://github.com/sslvgr/SchemaGen
 - **Repository Type**: git
-- **Project URL**: https://github.com/Teez-Technologies/SchemaGen
+- **Project URL**: https://github.com/sslvgr/SchemaGen
 - **README**: README.md (included in packages)
 
 ### Package-Specific Metadata

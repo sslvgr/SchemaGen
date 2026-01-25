@@ -43,7 +43,7 @@ The SchemaGen project uses GitHub Actions to automatically build, validate, and 
 ## Publishing Destinations
 
 ### GitHub Packages (Primary)
-- **Registry**: `https://nuget.pkg.github.com/Teez-Technologies/index.json`
+- **Registry**: `https://nuget.pkg.github.com/sslvgr/index.json`
 - **Authentication**: Uses GITHUB_TOKEN (automatically provided by GitHub Actions)
 - **Package Types**: Both main packages (.nupkg) and symbol packages (.snupkg)
 - **Visibility**: Private packages accessible to organization members

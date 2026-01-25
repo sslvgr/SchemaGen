@@ -8,14 +8,14 @@
 
   <!-- Package Metadata -->
   <PropertyGroup>
-    <Authors>Teez Technologies</Authors>
-    <Company>Teez Technologies</Company>
+    <Authors>https://github.com/sslvgr</Authors>
+    <Company>sslvgr</Company>
     <Product>SchemaGen</Product>
-    <Copyright>Copyright © Teez Technologies</Copyright>
+    <Copyright>Copyright © sslvgr</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/Teez-Technologies/SchemaGen</RepositoryUrl>
+    <RepositoryUrl>https://github.com/sslvgr/SchemaGen</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/Teez-Technologies/SchemaGen</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/sslvgr/SchemaGen</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>schema;generation;markdown;mermaid;sql;ddl;entity-framework</PackageTags>
   </PropertyGroup>
