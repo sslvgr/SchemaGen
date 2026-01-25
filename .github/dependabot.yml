@@ -9,9 +9,9 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 10
     reviewers:
-      - "Teez-Technologies/maintainers"
+      - "sslvgr"
     assignees:
-      - "Teez-Technologies/maintainers"
+      - "sslvgr"
     commit-message:
       prefix: "deps"
       prefix-development: "deps-dev"
@@ -64,9 +64,9 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 5
     reviewers:
-      - "Teez-Technologies/maintainers"
+      - "sslvgr"
     assignees:
-      - "Teez-Technologies/maintainers"
+      - "sslvgr"
     commit-message:
       prefix: "ci"
       include: "scope"
