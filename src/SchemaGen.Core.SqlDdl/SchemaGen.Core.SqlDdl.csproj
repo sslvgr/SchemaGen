@@ -1,17 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SchemaGen.Core.SqlDdl</PackageId>
     <Description>SQL DDL generation functionality for SchemaGen - generates SQL Data Definition Language scripts from Entity Framework models.</Description>
+    <PackageTags>schema;generation;sql;ddl;scripts;entity-framework;database</PackageTags>
+    <PackageReleaseNotes>Initial release of SchemaGen.Core.SqlDdl providing SQL DDL script generation from Entity Framework models.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
   </ItemGroup>
 
 </Project>

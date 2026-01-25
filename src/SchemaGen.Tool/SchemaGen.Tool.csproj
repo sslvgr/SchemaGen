@@ -2,22 +2,24 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SchemaGen.Tool</PackageId>
     <Description>Command-line tool for SchemaGen - generates documentation and diagrams from Entity Framework database schemas.</Description>
+    <PackageTags>schema;generation;cli;tool;command-line;entity-framework;database</PackageTags>
+    <PackageReleaseNotes>Initial release of SchemaGen.Tool providing command-line interface for schema generation functionality.</PackageReleaseNotes>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>schemagen</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SchemaGen.Core.Markdown" Version="$(Version)" />
-    <PackageReference Include="SchemaGen.Core.Mermaid" Version="$(Version)" />
-    <PackageReference Include="SchemaGen.Core.SqlDdl" Version="$(Version)" />
+    <ProjectReference Include="../SchemaGen.Core.Markdown/SchemaGen.Core.Markdown.csproj" />
+    <ProjectReference Include="../SchemaGen.Core.Mermaid/SchemaGen.Core.Mermaid.csproj" />
+    <ProjectReference Include="../SchemaGen.Core.SqlDdl/SchemaGen.Core.SqlDdl.csproj" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

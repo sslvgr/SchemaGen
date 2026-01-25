@@ -1,0 +1,75 @@
+version: 2
+updates:
+  # Enable version updates for NuGet packages
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "Teez-Technologies/maintainers"
+    assignees:
+      - "Teez-Technologies/maintainers"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "nuget"
+    # Group Entity Framework updates together
+    groups:
+      entity-framework:
+        patterns:
+          - "Microsoft.EntityFrameworkCore*"
+        update-types:
+          - "minor"
+          - "patch"
+      microsoft-extensions:
+        patterns:
+          - "Microsoft.Extensions*"
+        update-types:
+          - "minor"
+          - "patch"
+      testing:
+        patterns:
+          - "Microsoft.NET.Test.Sdk"
+          - "xunit*"
+          - "coverlet*"
+          - "FsCheck*"
+        update-types:
+          - "minor"
+          - "patch"
+      analyzers:
+        patterns:
+          - "Microsoft.CodeAnalysis*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Ignore major version updates for stable packages
+    ignore:
+      - dependency-name: "Microsoft.EntityFrameworkCore*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "Microsoft.Extensions*"
+        update-types: ["version-update:semver-major"]
+        
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "Teez-Technologies/maintainers"
+    assignees:
+      - "Teez-Technologies/maintainers"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"

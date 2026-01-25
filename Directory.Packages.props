@@ -1,0 +1,50 @@
+<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+  </PropertyGroup>
+
+  <!-- Entity Framework Core packages with floating patch versions -->
+  <ItemGroup Label="Entity Framework Core">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.*" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.*" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.*" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.*" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.*" />
+  </ItemGroup>
+
+  <!-- Microsoft Extensions packages -->
+  <ItemGroup Label="Microsoft Extensions">
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.*" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.*" />
+  </ItemGroup>
+
+  <!-- Build and versioning tools -->
+  <ItemGroup Label="Build Tools">
+    <PackageVersion Include="MinVer" Version="5.0.0" />
+    <!-- SourceLink temporarily disabled due to access issues -->
+    <!-- <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" /> -->
+  </ItemGroup>
+
+  <!-- Testing frameworks -->
+  <ItemGroup Label="Testing">
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageVersion Include="xunit" Version="2.*" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.*" />
+    <PackageVersion Include="coverlet.collector" Version="6.*" />
+    <PackageVersion Include="FsCheck" Version="2.*" />
+    <PackageVersion Include="FsCheck.Xunit" Version="2.*" />
+  </ItemGroup>
+
+  <!-- Global analyzers -->
+  <ItemGroup Label="Global Analyzers">
+    <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
+    <GlobalPackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
+  </ItemGroup>
+
+
+
+
+
+</Project>

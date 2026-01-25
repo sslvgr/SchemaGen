@@ -1,16 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SchemaGen.Core.Mermaid</PackageId>
     <Description>Mermaid diagram generation functionality for SchemaGen - creates entity relationship diagrams from database schemas.</Description>
+    <PackageTags>schema;generation;mermaid;diagrams;erd;entity-framework;database</PackageTags>
+    <PackageReleaseNotes>Initial release of SchemaGen.Core.Mermaid providing Mermaid ERD generation from Entity Framework models.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
   </ItemGroup>
 
 </Project>

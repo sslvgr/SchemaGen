@@ -1,0 +1,103 @@
+<Project>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Package Metadata -->
+  <PropertyGroup>
+    <Authors>Teez Technologies</Authors>
+    <Company>Teez Technologies</Company>
+    <Product>SchemaGen</Product>
+    <Copyright>Copyright © Teez Technologies</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Teez-Technologies/SchemaGen</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Teez-Technologies/SchemaGen</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>schema;generation;markdown;mermaid;sql;ddl;entity-framework</PackageTags>
+  </PropertyGroup>
+
+  <!-- MinVer Git-based versioning configuration -->
+  <PropertyGroup>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerVerbosity>minimal</MinVerVerbosity>
+    <Version>$(MinVerVersion)</Version>
+    <PackageVersion>$(MinVerVersion)</PackageVersion>
+    <AssemblyVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).0</AssemblyVersion>
+    <FileVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(MinVerRevision)</FileVersion>
+    <InformationalVersion>$(MinVerVersion)</InformationalVersion>
+  </PropertyGroup>
+
+  <!-- Build Quality Features for Task 6.4 -->
+  <PropertyGroup>
+    <!-- 1. Deterministic builds -->
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    
+    <!-- 2. Symbol package generation -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>portable</DebugType>
+    
+    <!-- 3. SourceLink for source debugging (properties only, package reference disabled due to access issues) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    
+    <!-- 4. Package validation -->
+    <EnablePackageValidation>true</EnablePackageValidation>
+  </PropertyGroup>
+
+  <!-- Build Quality and Analysis -->
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>NU1701;NU1702;NU1507</WarningsNotAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
+  <!-- Package Generation Settings -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Include README in packages -->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Conditional properties for different project types -->
+  <PropertyGroup Condition="'$(IsPackable)' == 'false'">
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Tool-specific properties -->
+  <PropertyGroup Condition="'$(PackAsTool)' == 'true'">
+    <PackageType>DotnetTool</PackageType>
+    <ToolCommandName>schemagen</ToolCommandName>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts/tools</PackageOutputPath>
+  </PropertyGroup>
+
+  <!-- Library-specific properties -->
+  <PropertyGroup Condition="'$(PackAsTool)' != 'true'">
+    <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts/packages</PackageOutputPath>
+  </PropertyGroup>
+
+  <!-- TODO: Add SourceLink package reference when access issues are resolved
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
+  </ItemGroup>
+  -->
+
+  <!-- MinVer package reference for Git-based versioning -->
+  <ItemGroup>
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

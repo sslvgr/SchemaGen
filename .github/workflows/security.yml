@@ -1,0 +1,162 @@
+name: Security and Quality
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run security scan daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Check for vulnerable packages
+      run: |
+        echo "Checking for vulnerable packages..."
+        dotnet list package --vulnerable --include-transitive 2>&1 | tee vulnerability-report.txt
+        
+        # Check if vulnerabilities were found
+        if grep -q "has the following vulnerable packages" vulnerability-report.txt; then
+          echo "❌ Vulnerable packages found!"
+          cat vulnerability-report.txt
+          exit 1
+        else
+          echo "✅ No vulnerable packages found"
+        fi
+        
+    - name: Check for outdated packages
+      run: |
+        echo "Checking for outdated packages..."
+        dotnet list package --outdated
+        
+    - name: Upload vulnerability report
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: vulnerability-report
+        path: vulnerability-report.txt
+        retention-days: 30
+        
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Required for SonarCloud
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build with analyzers
+      run: dotnet build --no-restore --configuration Release --verbosity normal
+      
+    - name: Check code formatting
+      run: |
+        echo "Checking code formatting..."
+        dotnet format --verify-no-changes --verbosity diagnostic
+        
+    - name: Run static analysis
+      run: |
+        echo "Running static analysis..."
+        dotnet build --configuration Release --verbosity normal --property:TreatWarningsAsErrors=true
+        
+  license-check:
+    name: License Compliance Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Install license check tool
+      run: dotnet tool install --global dotnet-project-licenses
+      
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Check licenses
+      run: |
+        echo "Checking package licenses..."
+        dotnet-project-licenses --input . --output-format table
+        
+        # Generate JSON report for further processing
+        dotnet-project-licenses --input . --output-format json --output licenses.json
+        
+    - name: Upload license report
+      uses: actions/upload-artifact@v4
+      with:
+        name: license-report
+        path: licenses.json
+        retention-days: 30
+        
+  supply-chain-security:
+    name: Supply Chain Security
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Generate SBOM (Software Bill of Materials)
+      run: |
+        echo "Generating Software Bill of Materials..."
+        dotnet tool install --global Microsoft.Sbom.Tool
+        
+        # Generate SBOM for the solution
+        sbom-tool generate \
+          -b ./artifacts/sbom \
+          -bc . \
+          -pn "SchemaGen" \
+          -pv "1.0.0" \
+          -ps "Teez Technologies" \
+          -nsb "https://github.com/Teez-Technologies/SchemaGen"
+          
+    - name: Upload SBOM
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom
+        path: ./artifacts/sbom/
+        retention-days: 90
